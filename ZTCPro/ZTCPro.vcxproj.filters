@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ZTC">
+      <UniqueIdentifier>{c9d8dfd3-219f-48d9-9d1f-8e5a16e68051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZTC\Algorithm">
+      <UniqueIdentifier>{acb1fe53-4bf9-4824-b105-53de19c1342e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZTC\Container">
+      <UniqueIdentifier>{b5bdf5e2-6693-426f-afef-019ee2660241}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZTC\include">
+      <UniqueIdentifier>{f290af9a-2849-4c3e-a813-bd45cb7dfe6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZTC\PictureRead">
+      <UniqueIdentifier>{7b6a6dc5-32d3-45e2-b177-a3063c52c13d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZTC\SmartPtr">
+      <UniqueIdentifier>{9aad6fb3-0265-4557-a503-588d9382be1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZTC\src">
+      <UniqueIdentifier>{ab1822d6-eeef-484b-bf0f-c15ccc4241e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZTC\TypeOf">
+      <UniqueIdentifier>{3b430d94-74bf-446d-af06-e43224a41d57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZTC\Algorithm\include">
+      <UniqueIdentifier>{ea535943-28f0-44ce-83c4-dab9deccf0fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{ca719763-8cb7-4dcf-a840-7be10606dbba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\TestContainer">
+      <UniqueIdentifier>{d1f233d6-92f8-400c-8c13-7f17e7c4f6e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ZTC\Algorithm\ZBinaryTree.hpp">
+      <Filter>ZTC\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\Algorithm\include\Z_Allocate.hpp">
+      <Filter>ZTC\Algorithm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\Algorithm\include\Z_Binary_Search_Tree.hpp">
+      <Filter>ZTC\Algorithm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\Algorithm\include\Z_Binary_Search_Tree_Iterator.hpp">
+      <Filter>ZTC\Algorithm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\Algorithm\include\Z_BinaryTreeImp.hpp">
+      <Filter>ZTC\Algorithm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\Algorithm\include\Z_Tree_Node.hpp">
+      <Filter>ZTC\Algorithm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\Container\ZContainerFunctionPool.hpp">
+      <Filter>ZTC\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\Container\ZDuoType.hpp">
+      <Filter>ZTC\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZBase.h">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZBaseMemberPair.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZCommon.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZCommonality.h">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZDefine.h">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZDelegation.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZDelegationImp.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZEvent.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZGlobalDefine.h">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZIfThenElse.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZIterator.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZLocker.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZLog.h">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZMacroDefine.h">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZNonCopyAble.h">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZObjectCounter.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZObserver.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZPoint.h">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZSingle.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZSingleton.h">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZSortTracer.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZStdf.h">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZTime.h">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZTypeOp.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\SmartPtr\ZAllocator.hpp">
+      <Filter>ZTC\SmartPtr</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\SmartPtr\ZCounterPolicy.hpp">
+      <Filter>ZTC\SmartPtr</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\SmartPtr\ZCountingPtr.hpp">
+      <Filter>ZTC\SmartPtr</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\SmartPtr\ZObjectPolicy.hpp">
+      <Filter>ZTC\SmartPtr</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\PictureRead\ZBitmap.h">
+      <Filter>ZTC\PictureRead</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\PictureRead\ZBitmapStruct.h">
+      <Filter>ZTC\PictureRead</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\PictureRead\ZPictureFunctionPool.h">
+      <Filter>ZTC\PictureRead</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\Test1.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\TestAlgorithm.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\TestContainer.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\testDelegation.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\TestLog.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\TestPictureRead.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Test\TestSmartPtr.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ZTC\src\ZCommonality.cpp">
+      <Filter>ZTC\src</Filter>
+    </ClCompile>
+    <ClCompile Include="ZTC\src\ZLog.cpp">
+      <Filter>ZTC\src</Filter>
+    </ClCompile>
+    <ClCompile Include="ZTC\src\ZPoint.cpp">
+      <Filter>ZTC\src</Filter>
+    </ClCompile>
+    <ClCompile Include="ZTC\src\ZTime.cpp">
+      <Filter>ZTC\src</Filter>
+    </ClCompile>
+    <ClCompile Include="ZTC\PictureRead\ZBitmap.cpp">
+      <Filter>ZTC\PictureRead</Filter>
+    </ClCompile>
+    <ClCompile Include="ZTC\PictureRead\ZPictureFunctionPool.cpp">
+      <Filter>ZTC\PictureRead</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\main.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

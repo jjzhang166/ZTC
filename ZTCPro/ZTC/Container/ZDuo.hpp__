@@ -1,0 +1,98 @@
+#ifndef ZTC_CONTAINER_ZDUO_HPP
+#define ZTC_CONTAINER_ZDUO_HPP
+
+namespace ZTC
+{
+	template <typename A, typename B, typename C>
+	class ZDuo<A, ZDuo<B, C> >
+	{
+	public:
+		typename A  T1;
+		typename ZDuo<B, C> T2;
+		enum{N = ZDuo<B, C>::N + 1};
+
+	private:
+		T1 m_value1;
+		T2 m_value2;
+
+	public:
+		ZDuo():m_value1(), m_value2()
+		{}
+		ZDuo(const T1& value1, const T2& value2):m_value1(value1),m_value2(value2)
+		{}
+
+		template <typename type1, typename type2>
+		ZDuo(const ZDuo<type1, type2>& other):m_value1(other.m_value1), m_value2(other.m_value2)
+		{
+		}
+
+		template <typename type1, typename type2>
+		ZDuo<T1, T2>& operator=(const ZDuo<type1, type2>& other)
+		{
+			if(this == &other)
+				return *this;
+			m_value1 = other.m_value1;
+			m_value2 = other.m_value2;
+			return *this;
+		}
+
+		T1& first()
+		{
+			return m_value1;
+		}
+
+		const T1& first() const
+		{
+			return m_value1;
+		}
+
+		T2& second()
+		{
+			return m_value2;
+		}
+
+		const T2& second() const
+		{
+			return m_value2;
+		}
+	};
+
+	template<typename A>
+	class ZDuo<A, void>
+	{
+	public:
+		typename A T1;
+		typedef void T2;
+		enum{N = 1};
+	private:
+		T1 m_value1;
+	public:
+		ZDuo():m_value1(){}
+		ZDuo(const T1& value):m_value1(value){}
+		T1& first(){return m_value1;}
+		const T1& first()const{return m_value1;}
+
+		void second(){}
+		void second() const {}
+	};
+
+	template <typename T1, typename T2>
+	inline ZDuo<T1, T2> MakeDuo(const T1& value1, const T2& value2)
+	{
+		return ZDuo<T1, T2>(value1, value2);
+	}
+
+	template <typename T1, typename T2, typename U1, typename U2>
+	inline bool operator==(const ZDuo<T1, T2>& duo1, const ZDuo<U1, U2>& duo2)
+	{
+		return duo1.first()== duo2.first() && duo1.second() == duo2.second();
+	}
+
+	template <typename T1, typename T2, typename U1, typename U2>
+	inline bool operator!=(const ZDuo<T1, T2>& duo1, const ZDuo<U1, U2>& duo2)
+	{
+		return !(duo1== duo2);
+	}
+}
+
+#endif //ZTC_CONTAINER_ZDUO_HPP

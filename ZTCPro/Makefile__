@@ -1,0 +1,73 @@
+#compile dir
+MODULE:= ZTC  #./../../route UnExternalCPP
+#compile files
+FILES:=
+#filter out files
+FILE_FILTER:=
+#filter out dir
+DIR_FILTER:=
+
+#################################################################################################################
+LOCAL_PATH=#.
+CC=gcc
+CXX=g++
+
+CFLAGS := -std=c++0x -g -ggdb \
+			-DLEGACEL_LINUX\
+			-DZTC_TEST\
+			-DTERMIANL_TEST_PUT_OUT	
+CPPFLAGS += -std=c++0x
+
+CFLAGS += \
+	-I$(LOCAL_PATH)/ZTC/include \
+	-I$(LOCAL_PATH)/ZTC/PictureRead \
+	-I$(LOCAL_PATH)/ZTC/SmartPtr \
+
+LDFLAGS:= #-L./libs -luni_platform -lPOISearch -llzo -lzib -lcmph -lsdsl -lcds
+TARGET:=./libs/ztclib.so
+
+define my-nfiles-under
+$(patsubst ./%,%, \
+  $(shell find $(1) -name "*.cpp" -or -name "*.c" -and -not -name ".*") \
+ )
+endef
+
+DIRS:=$(foreach n,$(MODULE),./$(n))
+SRC:=$(if $(DIRS), $(foreach r,$(DIRS),$(call my-nfiles-under,$(r))))
+#ifeq ($(findstring $(FILES), $(SRC)),)
+#SRC+=$(FILES)
+#endif
+
+ifeq ($(MODULE),)
+ifeq ($(FILES),)
+SRC:=$(call my-nfiles-under,./)
+endif
+endif
+
+#ifdef SRC
+$(foreach n,$(DIR_FILTER),$(eval SRC:=$(filter-out $(n)%, $(SRC))))
+$(foreach n,$(FILE_FILTER),$(eval SRC:=$(filter-out %$(n), $(SRC))))
+#endif
+
+ifdef FILES
+$(foreach n,$(FILES),$(if $(findstring $(n), $(SRC)), $(n),$(eval SRC+=$(n))))
+endif
+
+OBJ:=$(addsuffix .o,$(basename $(SRC)))
+
+.PHONY:check
+$(TARGET) : $(OBJ)
+	$(CXX) -shared $(OBJ) $(LDFLAGS) -o $(TARGET)
+
+check:
+	@echo $(MODULE)
+	@echo $(DIRS)
+	@echo $(SRC)
+	@echo $(OBJ)
+%.o : %.c
+	$(CC) -c -fPIC $(CFLAGS) $< -o $@
+%.o : %.cpp
+	$(CXX) -c -fPIC $(CFLAGS) $< -o $@
+clean:
+	rm -rf obj
+	rm -f $(OBJ) $(TARGET)

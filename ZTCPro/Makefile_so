@@ -1,0 +1,103 @@
+#compile dir
+MODULE:=PublicSharing routing  NavigationInstruction DataProvider ./../../route UnExternalCPP
+#compile files
+FILES:=
+#filter out files
+FILE_FILTER:=
+#filter out dir
+DIR_FILTER:=DataProvider/lzo-2.03  ./../../route/src__  DataProvider/Reader__01 DataProvider/Reader03 DataProvider/Reader_12_6
+
+#################################################################################################################
+LOCAL_PATH=.
+CC=gcc
+CXX=g++
+
+CFLAGS := -D__linux__ -std=c++0x -ggdb -D_GLIBCXX_PERMIT_BACKWARD_HASH -DMOREACCURATEFIXED \
+			-DFT2_BUILD_LIBRARY \
+			-DFT_DEBUG_LEVEL_ERROR \
+			-DFT_DEBUG_LEVEL_TRACE \
+			-DMSDNAV_EXPORT \
+			-DMANUAL_PROFILE \
+			-DNAVITSYSDEBUG \
+			-DSTLPORT\
+			-D_LEGACEL_LINUX_\
+			-DNAV_LINUX_SERVER_VERSIONS\
+			-DZTC_TEST#\
+			-DZTC_TIME_TEST\
+			#-DLINUX_INSTRUCTION_NUMBER_50
+			
+			
+CPPFLAGS += -std=c++0x
+
+CFLAGS += \
+	-I$(LOCAL_PATH)/../../route/include \
+	-I$(LOCAL_PATH)/../../common \
+	-I$(LOCAL_PATH)/../../../uni_platform/include \
+	-I$(LOCAL_PATH)/../../../uni_platform/common_external \
+	-I$(LOCAL_PATH)/PublicSharing/sdk/include \
+	-I$(LOCAL_PATH)/PublicSharing/include \
+	-I$(LOCAL_PATH)/PublicSharing/sdk_common \
+	-I$(LOCAL_PATH)/PublicSharing/sdk_common/zlib \
+	-I$(LOCAL_PATH)/routing \
+	-I$(LOCAL_PATH)/routing/inc \
+	-I$(LOCAL_PATH)/DataProvider/lzo-2.03/include \
+	-I$(LOCAL_PATH)/DataProvider/AreaDB \
+	-I$(LOCAL_PATH)/DataProvider/lock_road \
+	-I$(LOCAL_PATH)/DataProvider/POI/include \
+	-I$(LOCAL_PATH)/DataProvider/Reader \
+	-I$(LOCAL_PATH)/DataProvider/shape_reader/inc \
+	-I$(LOCAL_PATH)/DataProvider/Reader/InterFace \
+	-I$(LOCAL_PATH)/DataProvider/Reader/ElectronicEye \
+	-I$(LOCAL_PATH)/DataProvider/Reader/source_files/local_files \
+	-I$(LOCAL_PATH)/DataProvider/ServerGuide \
+	-I$(LOCAL_PATH)/NavigationInstruction/include \
+	-I$(LOCAL_PATH)/Include
+
+LDFLAGS:=-L./libs -luni_platform -lPOISearch -llzo -lzib -lcmph -lsdsl -lcds
+TARGET:=./libs/libnavi.so
+
+define my-nfiles-under
+$(patsubst ./%,%, \
+  $(shell find $(1) -name "*.cpp" -or -name "*.c" -and -not -name ".*") \
+ )
+endef
+
+DIRS:=$(foreach n,$(MODULE),./$(n))
+SRC:=$(if $(DIRS), $(foreach r,$(DIRS),$(call my-nfiles-under,$(r))))
+#ifeq ($(findstring $(FILES), $(SRC)),)
+#SRC+=$(FILES)
+#endif
+
+ifeq ($(MODULE),)
+ifeq ($(FILES),)
+SRC:=$(call my-nfiles-under,./)
+endif
+endif
+
+#ifdef SRC
+$(foreach n,$(DIR_FILTER),$(eval SRC:=$(filter-out $(n)%, $(SRC))))
+$(foreach n,$(FILE_FILTER),$(eval SRC:=$(filter-out %$(n), $(SRC))))
+#endif
+
+ifdef FILES
+$(foreach n,$(FILES),$(if $(findstring $(n), $(SRC)), $(n),$(eval SRC+=$(n))))
+endif
+
+OBJ:=$(addsuffix .o,$(basename $(SRC)))
+
+.PHONY:check
+$(TARGET) : $(OBJ)
+	$(CXX) -shared $(OBJ) $(LDFLAGS) -o $(TARGET)
+
+check:
+	@echo $(MODULE)
+	@echo $(DIRS)
+	@echo $(SRC)
+	@echo $(OBJ)
+%.o : %.c
+	$(CC) -c -fPIC $(CFLAGS) $< -o $@
+%.o : %.cpp
+	$(CXX) -c -fPIC $(CFLAGS) $< -o $@
+clean:
+	rm -rf obj
+	rm -f $(OBJ) $(TARGET)

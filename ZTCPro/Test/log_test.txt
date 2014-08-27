@@ -1,0 +1,3 @@
+Error : Oh No!Error : 
+87oooo
+Error : 成功了！Error : 可变参数！4我是程序员a, 3.141560呵呵
