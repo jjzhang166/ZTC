@@ -1,0 +1,429 @@
+#ifndef ZTC_ALGORITHM_Z_BINARYTREEIMP_HPP
+#define ZTC_ALGORITHM_Z_BINARYTREEIMP_HPP
+
+#include <iostream>
+#include <cmath>
+#include <vector>
+
+namespace ZTC
+{
+	template <typename ElemType>
+	struct ZBinaryTreeNode
+	{
+		ElemType data;
+		ZBinaryTreeNode<ElemType>* leftTreeNode;
+		ZBinaryTreeNode<ElemType>* rightTreeNode;
+
+		ZBinaryTreeNode(): data(ElemType()), leftTreeNode(NULL), rightTreeNode(NULL){}
+	};
+
+	template <typename ElemType>
+	class BinaryTreeImp
+	{
+	private:
+		enum NodeFlag{
+			LeftNode = 0,
+			RightNode
+		};
+		enum NodeNum {
+			CapacityNum = 600
+		};
+
+		template <typename ElemType>
+		struct TreeNode
+		{
+			ZBinaryTreeNode<ElemType> treeNodeImp;
+			unsigned long index;  //该节点在树中的索引号（添加进树的顺序从0开始）
+		};
+
+	public:
+		/*
+		 * 第一参数表示头节点，第二个参数表示树节点的总个数
+		 **/
+		BinaryTreeImp(ElemType nodeData, unsigned int num = 600) : m_pBinaryTree(NULL), m_actualNodeNum(0)
+		{
+			InitDataMemeber(num);
+			CreateBinaryTree(nodeData);
+		}
+		BinaryTreeImp(const BinaryTreeImp<ElemType> &other): m_actualNodeNum(0), m_userDefineCapactyNum(other.m_userDefineCapactyNum)
+		{
+			InitDataMemeber(m_userDefineCapactyNum);
+			PushLeftNode(other.m_pBinaryTree[0].treeNodeImp);  //从other的头结点开始添加
+		}
+		BinaryTreeImp<ElemType>& operator= (const BinaryTreeImp<ElemType> &other)
+		{
+			if(this == &other)
+				return *this;
+
+			m_actualNodeNum = 0;
+			m_userDefineCapactyNum = other.m_userDefineCapactyNum;
+			InitDataMemeber(m_userDefineCapactyNum);
+			PushLeftNode(other.m_pBinaryTree[0]);  //从other的头结点开始添加
+			return *this;
+		}
+
+		~BinaryTreeImp()
+		{
+			ReleaseDataMember();
+		}
+
+		/*****
+		 * 注意：如果待添加的节点有左子树或右子树则也会被添加进当前树里面
+		 **/
+		bool PushLeftNode(const ZBinaryTreeNode<ElemType> &treeNode)
+		{
+			return PushNode(treeNode, LeftNode);
+		}
+
+		bool PushLeftNode(const ElemType &treeNodeData)
+		{
+			return PushNode(m_actualNodeNum - 1, treeNodeData, LeftNode);
+		}
+		
+		bool PushLeftNode(unsigned long index, const ElemType &treeNodeData)
+		{
+			return PushNode(index, treeNodeData, LeftNode);
+		}
+
+		bool PushRightNode(const ZBinaryTreeNode<ElemType> &treeNode)
+		{
+			return PushNode(treeNode, RightNode);
+		}
+
+		bool PushRightNode(const ElemType &treeNodeData)
+		{
+			return PushNode(m_actualNodeNum - 1, treeNodeData, RightNode);
+		}
+
+		bool PushRightNode(unsigned long index, const ElemType &treeNodeData)
+		{
+			return PushNode(index, treeNodeData, RightNode);
+		}
+
+		bool IsEmpty()
+		{
+			return (m_actualNodeNum == 0);
+		}
+
+		unsigned long Size()
+		{
+			return m_actualNodeNum;
+		}
+
+		unsigned long GetResidualCapacity()
+		{
+			return m_userDefineCapactyNum - m_actualNodeNum;
+		}
+		unsigned long GetCapacity()
+		{
+			return m_userDefineCapactyNum;
+		}
+
+		unsigned long GetParentIndex(unsigned long index)
+		{
+			if(0 == index)
+				return 0;
+			return (index + 1)/2 - 1;
+		}
+
+		unsigned long GetLeftIndex(unsigned long index)
+		{
+			return 2*index + 1;
+		}
+
+		unsigned long GetRightIndex(unsigned long index)
+		{
+			return 2 * index + 2;
+		}
+		
+		/**********
+		 ** 判断是否为完全二叉树
+		 ****/
+		bool IsCompleteTree()
+		{
+			for(unsigned int i = 0; i<m_actualNodeNum; ++i)
+			{
+				if((m_pBinaryTree[i].treeNodeImp.leftTreeNode && !m_pBinaryTree[i].treeNodeImp.rightTreeNode)
+					||(!m_pBinaryTree[i].treeNodeImp.leftTreeNode && m_pBinaryTree[i].treeNodeImp.rightTreeNode))
+					return false;
+			}
+			return true;
+		}
+
+		/**********
+		 ** 判断是否为满二叉树
+		 ****/
+		bool IsFullyTree()
+		{
+			if(!IsCompleteTree())
+				return false;
+
+			int leep = 0;
+			Leep(m_pBinaryTree[0].treeNodeImp, leep);//从头节点开始遍历，获得层数
+			int h = (int)(log10((double)m_actualNodeNum + 1) / log10((double)2)); //如果是满二叉树，层数为 log10(m_actualNodeNum + 1) / log10(2)
+			if(leep != h - 1)
+				return false;
+
+			return true;
+		}
+
+		void PreOrderTraverse(std::vector<ElemType> &elemArray)  //先序遍历
+		{
+			PreOrderTraverse(m_pBinaryTree[0].treeNodeImp, elemArray);
+		}
+
+		void InOrderTraverse(std::vector<ElemType> &elemArray)  //中序遍历
+		{
+			InOrderTraverse(m_pBinaryTree[0].treeNodeImp, elemArray);
+		}
+
+		void PostOrderTraverse(std::vector<ElemType> &elemArray) //后
+		{
+			PostOrderTraverse(m_pBinaryTree[0].treeNodeImp, elemArray);
+		}
+
+		/******
+		 * 将索引号为index的节点的元素置换为elem
+		 **/
+		void Assigment(unsigned int index, const ElemType &elem)
+		{
+
+		}
+
+	private:
+		typedef unsigned long ulong;
+	private:
+
+		void InitDataMemeber(unsigned int num)
+		{
+			if(num > 0)
+			{
+				m_pBinaryTree = new TreeNode<ElemType>[num];
+				m_userDefineCapactyNum = num;
+			}
+			else
+			{
+				m_pBinaryTree = new TreeNode<ElemType>[CapacityNum];
+				m_userDefineCapactyNum = (unsigned int)CapacityNum;
+			}
+		}
+		
+		void ReleaseDataMember()
+		{
+			////先释放额外分配的资源
+			//if(m_pBinaryTree[m_userDefineCapactyNum - 1].treeNodeImp.leftTreeNode)
+			//{
+			//	ReleaseBinaryTree(m_pBinaryTree[m_userDefineCapactyNum - 1].treeNodeImp.leftTreeNode);
+			//}
+			if(m_pBinaryTree)
+			{
+				delete [] m_pBinaryTree;
+				m_pBinaryTree = NULL;
+			}
+		}
+
+		void ReleaseBinaryTree(ZBinaryTreeNode<ElemType> *&pBinaryTreeNode)
+		{
+			if(pBinaryTreeNode && pBinaryTreeNode->leftTreeNode)
+			{
+				ReleaseBinaryTree(pBinaryTreeNode->leftTreeNode);
+			}
+			if(pBinaryTreeNode && pBinaryTreeNode->rightTreeNode)
+			{
+				ReleaseBinaryTree(pBinaryTreeNode->rightTreeNode);
+			}
+
+			if(pBinaryTreeNode)
+			{
+				delete pBinaryTreeNode;
+				pBinaryTreeNode = NULL;
+			}
+		}
+
+		/*
+		 *返回值：没有增加之前的数目
+		 **/
+		ulong IncreaseAcualNodeNum()
+		{
+			++m_actualNodeNum;
+			return m_actualNodeNum - 1;
+		}
+
+		bool PushNode(unsigned long index, const ElemType &treeNodeData, NodeFlag nodeFlag = LeftNode)
+		{
+			if(m_actualNodeNum - 1 < index)
+				return false;
+
+			if(nodeFlag == LeftNode && m_pBinaryTree[index].treeNodeImp.leftTreeNode)
+				return false;
+
+			if(nodeFlag == RightNode && m_pBinaryTree[index].treeNodeImp.rightTreeNode)
+				return false;
+
+			if(m_actualNodeNum < CapacityNum - 1)
+			{
+				m_pBinaryTree[m_actualNodeNum].treeNodeImp.data = treeNodeData;
+				m_pBinaryTree[m_actualNodeNum].treeNodeImp.leftTreeNode = NULL;
+				m_pBinaryTree[m_actualNodeNum].treeNodeImp.rightTreeNode = NULL;
+
+				if(nodeFlag == LeftNode)
+					m_pBinaryTree[index].treeNodeImp.leftTreeNode = &m_pBinaryTree[m_actualNodeNum].treeNodeImp;
+				if(nodeFlag == RightNode)
+					m_pBinaryTree[index].treeNodeImp.rightTreeNode = &m_pBinaryTree[m_actualNodeNum].treeNodeImp;
+			}
+			/*else
+			{
+				ZBinaryTreeNode<ElemType>* pAddTreeNode = new ZBinaryTreeNode<ElemType>();
+				pAddTreeNode->data = treeNodeData;
+				pAddTreeNode->leftTreeNode = NULL;
+				pAddTreeNode->rightTreeNode = NULL;
+
+				if(nodeFlag == LeftNode)
+					m_pBinaryTree[index].treeNodeImp.treeNodeImp.data = nodeData; = pAddTreeNode;
+				if(nodeFlag == RightNode)
+					m_pBinaryTree[index].treeNodeImp.rightTreeNode = pAddTreeNode;
+ 			}*/
+			
+			m_pBinaryTree[m_actualNodeNum].index = IncreaseAcualNodeNum();
+			return true;
+		}
+
+		bool PushNode(const ZBinaryTreeNode<ElemType> &treeNode, NodeFlag nodeFlag = LeftNode)
+		{
+			if(m_actualNodeNum < CapacityNum - 1)
+			{
+				if(nodeFlag == LeftNode)
+					m_pBinaryTree[m_actualNodeNum - 1].treeNodeImp.leftTreeNode = &m_pBinaryTree[m_actualNodeNum].treeNodeImp;
+				if(nodeFlag == RightNode)
+					m_pBinaryTree[m_actualNodeNum - 1].treeNodeImp.rightTreeNode = &m_pBinaryTree[m_actualNodeNum].treeNodeImp;
+
+				m_pBinaryTree[m_actualNodeNum].treeNodeImp.data = treeNode.data;
+			}
+			/*else
+			{
+				ZBinaryTreeNode<ElemType>* pAddTreeNode = new ZBinaryTreeNode<ElemType>();
+				if(nodeFlag == LeftNode)
+				m_pBinaryTree[m_actualNodeNum - 1].leftTreeNode = pAddTreeNode;
+				if(nodeFlag == RightNode)
+				m_pBinaryTree[m_actualNodeNum - 1].rightTreeNode = pAddTreeNode;
+
+				pAddTreeNode->data = treeNode.data;
+			}*/
+			
+			m_pBinaryTree[m_actualNodeNum].index = IncreaseAcualNodeNum();
+			ulong leep = m_actualNodeNum;
+			
+			if(treeNode.leftTreeNode)
+			{
+				PushNode(*treeNode.leftTreeNode, LeftNode);
+			}
+			if(treeNode.rightTreeNode)
+			{
+				if(treeNode.leftTreeNode)
+					PushNode(leep - 1, *treeNode.rightTreeNode, RightNode);
+				else
+					PushNode(*treeNode.rightTreeNode, RightNode);
+			}
+			return true;
+		}
+
+		bool PushNode(int index, const ZBinaryTreeNode<ElemType> &treeNode, NodeFlag nodeFlag = LeftNode)
+		{
+			if(m_actualNodeNum < CapacityNum - 1)
+			{
+				if(nodeFlag == LeftNode)
+					m_pBinaryTree[index].treeNodeImp.leftTreeNode = &m_pBinaryTree[m_actualNodeNum].treeNodeImp;
+				if(nodeFlag == RightNode)
+					m_pBinaryTree[index].treeNodeImp.rightTreeNode = &m_pBinaryTree[m_actualNodeNum].treeNodeImp;
+
+				m_pBinaryTree[m_actualNodeNum].treeNodeImp.data = treeNode.data;
+			}
+			/*else
+			{
+				ZBinaryTreeNode<ElemType>* pAddTreeNode = new ZBinaryTreeNode<ElemType>();
+				if(nodeFlag == LeftNode)
+					m_pBinaryTree[m_actualNodeNum - 1].leftTreeNode = pAddTreeNode;
+				if(nodeFlag == RightNode)
+					m_pBinaryTree[m_actualNodeNum - 1].rightTreeNode = pAddTreeNode;
+
+				pAddTreeNode->data = treeNode.data;
+			}*/
+
+			m_pBinaryTree[m_actualNodeNum].index = IncreaseAcualNodeNum();
+			ulong leep = m_actualNodeNum;
+
+			if(treeNode.leftTreeNode)
+			{
+				PushNode(*treeNode.leftTreeNode, LeftNode);
+			}
+			if(treeNode.rightTreeNode)
+			{
+				if(treeNode.leftTreeNode)
+					PushNode(leep - 1, *treeNode.rightTreeNode, RightNode);
+				else
+					PushNode(*treeNode.rightTreeNode, RightNode);
+			}
+			return true;
+		}
+
+		void CreateBinaryTree(const ElemType &nodeData)
+		{
+			m_pBinaryTree[m_actualNodeNum].treeNodeImp.data = nodeData;
+			m_pBinaryTree[m_actualNodeNum].treeNodeImp.leftTreeNode = NULL;
+			m_pBinaryTree[m_actualNodeNum].treeNodeImp.rightTreeNode = NULL;
+			m_pBinaryTree[m_actualNodeNum].index = 0;
+			IncreaseAcualNodeNum();
+		}
+
+		void CreateBinaryTree(const ZBinaryTreeNode<ElemType> &treeNode)
+		{
+			m_pBinaryTree[m_actualNodeNum].treeNodeImp.data = nodeData;
+			m_pBinaryTree[m_actualNodeNum].treeNodeImp.leftTreeNode = NULL;
+			m_pBinaryTree[m_actualNodeNum].treeNodeImp.rightTreeNode = NULL;
+			m_pBinaryTree[m_actualNodeNum].index = 0;
+			IncreaseAcualNodeNum();
+		}
+
+		void Leep(const ZBinaryTreeNode<ElemType> &treeNode, int &leep)
+		{
+			if(treeNode.leftTreeNode)
+			{
+				++leep;
+				Leep(*treeNode.leftTreeNode, leep);
+			}
+		}
+
+		void PreOrderTraverse(const ZBinaryTreeNode<ElemType> &treeNode, std::vector<ElemType> &elemArray)
+		{
+			elemArray.push_back(treeNode.data);
+			if(treeNode.leftTreeNode)
+				PreOrderTraverse(*treeNode.leftTreeNode, elemArray);
+			if(treeNode.rightTreeNode)
+				PreOrderTraverse(*treeNode.rightTreeNode, elemArray);
+		}
+
+		void InOrderTraverse(const ZBinaryTreeNode<ElemType> &treeNode, std::vector<ElemType> &elemArray)
+		{
+			if(treeNode.leftTreeNode)
+				InOrderTraverse(*treeNode.leftTreeNode, elemArray);
+			elemArray.push_back(treeNode.data);
+			if(treeNode.rightTreeNode)
+				InOrderTraverse(*treeNode.rightTreeNode, elemArray);
+		}
+
+		void PostOrderTraverse(const ZBinaryTreeNode<ElemType> &treeNode, std::vector<ElemType> &elemArray)
+		{
+			if(treeNode.leftTreeNode)
+				PostOrderTraverse(*treeNode.leftTreeNode, elemArray);
+			if(treeNode.rightTreeNode)
+				PostOrderTraverse(*treeNode.rightTreeNode, elemArray);
+			elemArray.push_back(treeNode.data);
+		}
+
+		TreeNode<ElemType>* m_pBinaryTree;
+		ulong m_actualNodeNum;
+		unsigned int m_userDefineCapactyNum;
+	};
+}
+
+#endif //ZTC_ALGORITHM_Z_BINARYTREEIMP_HPP
