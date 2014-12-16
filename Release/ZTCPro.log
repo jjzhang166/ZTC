@@ -1,0 +1,183 @@
+﻿Build started 2014/11/6 13:31:17.
+     1>Project "F:\Dev\ZTCPro\ZTCPro\ZTCPro.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\VisualStudio2012\ZZ_Install\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D ZTC_EXPORTS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Test\main.cpp ZTC\ClientNet\ZClientNet.cpp ZTC\ClientNet\ZClientSocket.cpp ZTC\ClientNet\ZClientTimer.cpp ZTC\PictureRead\ZBitmap.cpp ZTC\PictureRead\ZPictureFunctionPool.cpp ZTC\src\ZCommonality.cpp ZTC\src\ZLog.cpp ZTC\src\ZPoint.cpp ZTC\src\ZTime.cpp
+         main.cpp
+     1>f:\dev\ztcpro\ztcpro\test\../ZTC/include/ZCommonality.h(59): warning C4190: 'ItoString' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\test\../ZTC/include/ZCommonality.h(60): warning C4190: 'do_fraction' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\test\../ZTC/include/ZCommonality.h(69): warning C4190: 'CharToHex' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\test\../ZTC/include/ZLog.h(54): warning C4251: 'ZTC::ZLog::m_ofstream' : class 'std::basic_ofstream<_Elem,_Traits>' needs to have dll-interface to be used by clients of class 'ZTC::ZLog'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\test\Test1.h(139): warning C4101: 'two' : unreferenced local variable
+     1>f:\dev\ztcpro\ztcpro\test\Test1.h(144): warning C4101: 'cC' : unreferenced local variable
+     1>f:\dev\ztcpro\ztcpro\test\Test1.h(138): warning C4101: 'one' : unreferenced local variable
+     1>f:\dev\ztcpro\ztcpro\test\TestAlgorithm.h(164): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\VisualStudio2012\ZZ_Install\VC\include\string.h(110) : see declaration of 'strcpy'
+     1>f:\dev\ztcpro\ztcpro\test\TestAlgorithm.h(194): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\VisualStudio2012\ZZ_Install\VC\include\string.h(110) : see declaration of 'strcpy'
+     1>f:\dev\ztcpro\ztcpro\test\TestAlgorithm.h(196): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\VisualStudio2012\ZZ_Install\VC\include\string.h(110) : see declaration of 'strcpy'
+     1>f:\dev\ztcpro\ztcpro\test\TestAlgorithm.h(198): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\VisualStudio2012\ZZ_Install\VC\include\string.h(110) : see declaration of 'strcpy'
+     1>f:\dev\ztcpro\ztcpro\test\TestAlgorithm.h(200): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\VisualStudio2012\ZZ_Install\VC\include\string.h(110) : see declaration of 'strcpy'
+         ZClientNet.cpp
+         ZClientSocket.cpp
+         ZClientTimer.cpp
+         ZBitmap.cpp
+     1>f:\dev\ztcpro\ztcpro\ztc\pictureread\../include/ZCommonality.h(59): warning C4190: 'ItoString' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\ztc\pictureread\../include/ZCommonality.h(60): warning C4190: 'do_fraction' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\ztc\pictureread\../include/ZCommonality.h(69): warning C4190: 'CharToHex' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>ZTC\PictureRead\ZBitmap.cpp(12): warning C4345: behavior change: an object of POD type constructed with an initializer of the form () will be default-initialized
+     1>ZTC\PictureRead\ZBitmap.cpp(46): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::WORD', possible loss of data
+     1>ZTC\PictureRead\ZBitmap.cpp(54): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::WORD', possible loss of data
+     1>ZTC\PictureRead\ZBitmap.cpp(58): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::WORD', possible loss of data
+     1>ZTC\PictureRead\ZBitmap.cpp(96): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::WORD', possible loss of data
+     1>ZTC\PictureRead\ZBitmap.cpp(100): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::WORD', possible loss of data
+     1>ZTC\PictureRead\ZBitmap.cpp(144): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::BYTE', possible loss of data
+     1>ZTC\PictureRead\ZBitmap.cpp(148): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::BYTE', possible loss of data
+     1>ZTC\PictureRead\ZBitmap.cpp(152): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::BYTE', possible loss of data
+     1>ZTC\PictureRead\ZBitmap.cpp(156): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::BYTE', possible loss of data
+         ZPictureFunctionPool.cpp
+     1>f:\dev\ztcpro\ztcpro\ztc\pictureread\../include/ZCommonality.h(59): warning C4190: 'ItoString' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\ztc\pictureread\../include/ZCommonality.h(60): warning C4190: 'do_fraction' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\ztc\pictureread\../include/ZCommonality.h(69): warning C4190: 'CharToHex' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>ZTC\PictureRead\ZPictureFunctionPool.cpp(24): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::WORD', possible loss of data
+     1>ZTC\PictureRead\ZPictureFunctionPool.cpp(32): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::WORD', possible loss of data
+     1>ZTC\PictureRead\ZPictureFunctionPool.cpp(36): warning C4244: '=' : conversion from 'unsigned long' to 'ZTC::WORD', possible loss of data
+         ZCommonality.cpp
+     1>f:\dev\ztcpro\ztcpro\ztc\src\../include/ZCommonality.h(59): warning C4190: 'ItoString' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\ztc\src\../include/ZCommonality.h(60): warning C4190: 'do_fraction' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\ztc\src\../include/ZCommonality.h(69): warning C4190: 'CharToHex' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>ZTC\src\ZCommonality.cpp(204): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\VisualStudio2012\ZZ_Install\VC\include\stdio.h(357) : see declaration of 'sprintf'
+         ZLog.cpp
+     1>f:\dev\ztcpro\ztcpro\ztc\src\../include/ZLog.h(54): warning C4251: 'ZTC::ZLog::m_ofstream' : class 'std::basic_ofstream<_Elem,_Traits>' needs to have dll-interface to be used by clients of class 'ZTC::ZLog'
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>
+                 ]
+     1>ZTC\src\ZLog.cpp(130): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\VisualStudio2012\ZZ_Install\VC\include\stdio.h(349) : see declaration of '_vsnprintf'
+         ZPoint.cpp
+         ZTime.cpp
+     1>f:\dev\ztcpro\ztcpro\ztc\src\../include/ZCommonality.h(59): warning C4190: 'ItoString' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\ztc\src\../include/ZCommonality.h(60): warning C4190: 'do_fraction' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>f:\dev\ztcpro\ztcpro\ztc\src\../include/ZCommonality.h(69): warning C4190: 'CharToHex' has C-linkage specified, but returns UDT 'std::basic_string<_Elem,_Traits,_Alloc>' which is incompatible with C
+                 with
+                 [
+                     _Elem=char,
+                     _Traits=std::char_traits<char>,
+                     _Alloc=std::allocator<char>
+                 ]
+     1>ZTC\src\ZTime.cpp(12): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\VisualStudio2012\ZZ_Install\VC\include\time.inl(112) : see declaration of 'localtime'
+       Link:
+         D:\VisualStudio2012\ZZ_Install\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\Dev\ZTCPro\Release\ZTCPro.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\Dev\ZTCPro\Release\ZTCPro.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\Dev\ZTCPro\Release\ZTCPro.lib" /MACHINE:X86 /SAFESEH Release\main.obj
+         Release\ZClientNet.obj
+         Release\ZClientSocket.obj
+         Release\ZClientTimer.obj
+         Release\ZBitmap.obj
+         Release\ZPictureFunctionPool.obj
+         Release\ZCommonality.obj
+         Release\ZLog.obj
+         Release\ZPoint.obj
+         Release\ZTime.obj
+            Creating library F:\Dev\ZTCPro\Release\ZTCPro.lib and object F:\Dev\ZTCPro\Release\ZTCPro.exp
+         Generating code
+         Finished generating code
+         ZTCPro.vcxproj -> F:\Dev\ZTCPro\Release\ZTCPro.exe
+     1>Done Building Project "F:\Dev\ZTCPro\ZTCPro\ZTCPro.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:17.96

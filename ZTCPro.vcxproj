@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{52C95BCD-805C-41BD-BA37-8BA1825D010F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ZTCPro</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;ZTC_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;ZTC_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Test\Test1.h" />
+    <ClInclude Include="Test\TestAlgorithm.h" />
+    <ClInclude Include="Test\TestContainer.h" />
+    <ClInclude Include="Test\testDelegation.h" />
+    <ClInclude Include="Test\TestLog.h" />
+    <ClInclude Include="Test\TestPictureRead.h" />
+    <ClInclude Include="Test\TestSmartPtr.h" />
+    <ClInclude Include="ZTC\Algorithm\include\Z_Allocate.hpp" />
+    <ClInclude Include="ZTC\Algorithm\include\Z_BinaryTreeImp.hpp" />
+    <ClInclude Include="ZTC\Algorithm\include\Z_Binary_Search_Tree.hpp" />
+    <ClInclude Include="ZTC\Algorithm\include\Z_Binary_Search_Tree_Iterator.hpp" />
+    <ClInclude Include="ZTC\Algorithm\include\Z_Tree_Node.hpp" />
+    <ClInclude Include="ZTC\Algorithm\ZBinaryTree.hpp" />
+    <ClInclude Include="ZTC\ClientNet\ZClientNet.h" />
+    <ClInclude Include="ZTC\ClientNet\ZClientSocket.h" />
+    <ClInclude Include="ZTC\ClientNet\ZClientTimer.h" />
+    <ClInclude Include="ZTC\ClientNet\ZConfig.h" />
+    <ClInclude Include="ZTC\Container\ZContainerFunctionPool.hpp" />
+    <ClInclude Include="ZTC\Container\ZDuoType.hpp" />
+    <ClInclude Include="ZTC\include\ZBase.h" />
+    <ClInclude Include="ZTC\include\ZBaseMemberPair.hpp" />
+    <ClInclude Include="ZTC\include\ZCommon.hpp" />
+    <ClInclude Include="ZTC\include\ZCommonality.h" />
+    <ClInclude Include="ZTC\include\ZDefine.h" />
+    <ClInclude Include="ZTC\include\ZDelegation.hpp" />
+    <ClInclude Include="ZTC\include\ZDelegationImp.hpp" />
+    <ClInclude Include="ZTC\include\ZEvent.hpp" />
+    <ClInclude Include="ZTC\include\ZGlobalDefine.h" />
+    <ClInclude Include="ZTC\include\ZIfThenElse.hpp" />
+    <ClInclude Include="ZTC\include\ZIterator.hpp" />
+    <ClInclude Include="ZTC\include\ZLocker.hpp" />
+    <ClInclude Include="ZTC\include\ZLog.h" />
+    <ClInclude Include="ZTC\include\ZMacroDefine.h" />
+    <ClInclude Include="ZTC\include\ZMultiPlatformConfig.h" />
+    <ClInclude Include="ZTC\include\ZMutex.h" />
+    <ClInclude Include="ZTC\include\ZUncopy.h" />
+    <ClInclude Include="ZTC\include\ZObjectCounter.hpp" />
+    <ClInclude Include="ZTC\include\ZObserver.hpp" />
+    <ClInclude Include="ZTC\include\ZPoint.h" />
+    <ClInclude Include="ZTC\include\ZSingle.hpp" />
+    <ClInclude Include="ZTC\include\ZSingleton.h" />
+    <ClInclude Include="ZTC\include\ZSortTracer.hpp" />
+    <ClInclude Include="ZTC\include\ZStdf.h" />
+    <ClInclude Include="ZTC\include\ZTime.h" />
+    <ClInclude Include="ZTC\include\ZType.h" />
+    <ClInclude Include="ZTC\include\ZTypeOp.hpp" />
+    <ClInclude Include="ZTC\PictureRead\ZBitmap.h" />
+    <ClInclude Include="ZTC\PictureRead\ZBitmapStruct.h" />
+    <ClInclude Include="ZTC\PictureRead\ZPictureFunctionPool.h" />
+    <ClInclude Include="ZTC\SmartPtr\ZAllocator.hpp" />
+    <ClInclude Include="ZTC\SmartPtr\ZCounterPolicy.hpp" />
+    <ClInclude Include="ZTC\SmartPtr\ZCountingPtr.hpp" />
+    <ClInclude Include="ZTC\SmartPtr\ZObjectPolicy.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Test\main.cpp" />
+    <ClCompile Include="ZTC\ClientNet\ZClientNet.cpp" />
+    <ClCompile Include="ZTC\ClientNet\ZClientSocket.cpp" />
+    <ClCompile Include="ZTC\ClientNet\ZClientTimer.cpp" />
+    <ClCompile Include="ZTC\PictureRead\ZBitmap.cpp" />
+    <ClCompile Include="ZTC\PictureRead\ZPictureFunctionPool.cpp" />
+    <ClCompile Include="ZTC\src\ZCommonality.cpp" />
+    <ClCompile Include="ZTC\src\ZLog.cpp" />
+    <ClCompile Include="ZTC\src\ZPoint.cpp" />
+    <ClCompile Include="ZTC\src\ZTime.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

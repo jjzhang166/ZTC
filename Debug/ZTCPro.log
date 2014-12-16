@@ -1,0 +1,20 @@
+﻿Build started 2014/11/27 22:29:46.
+     1>Project "F:\Dev\ZTCPro\ZTCPro\ZTCPro.vcxproj" on node 2 (Build target(s)).
+     1>Lib:
+         D:\VisualStudio2012\ZZ_Install\VC\bin\Lib.exe /OUT:"F:\Dev\Project\C++\ReadMp3Info\Debug\ZTCPro.lib" /NOLOGO Debug\main.obj
+         Debug\ZClientNet.obj
+         Debug\ZClientSocket.obj
+         Debug\ZClientTimer.obj
+         Debug\ZBitmap.obj
+         Debug\ZPictureFunctionPool.obj
+         Debug\ZCommonality.obj
+         Debug\ZLog.obj
+         Debug\ZPoint.obj
+         Debug\ZTime.obj
+     1>ZClientNet.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+         ZTCPro.vcxproj -> F:\Dev\Project\C++\ReadMp3Info\Debug\ZTCPro.lib
+     1>Done Building Project "F:\Dev\ZTCPro\ZTCPro\ZTCPro.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.36
