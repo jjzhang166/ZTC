@@ -39,18 +39,6 @@ namespace ZTC
 			{
 				m_toBeNotifedFun.erase(iter);
 			}
-			
-			/*
-			for(typename vector<pObserverCallBackFun>::iterator iter = m_toBeNotifedFun.begin();
-				iter != m_toBeNotifedFun.end(); ++iter)
-			{
-				if(*iter == fun)
-				{
-					m_toBeNotifedFun.erase(iter);
-					break;
-				}
-			}
-			*/
 			//m_removeLocker.unlock();
 			//unlock
 		}
@@ -63,24 +51,11 @@ namespace ZTC
 		{
 			//lock
 			//m_removeLocker.lock();
-
 			typename vector<ZObserver<ParamType> *>::iterator iter = std::find(m_toBeNotifedObj.begin(), m_toBeNotifedObj.end(), obj);			
 			if(iter != m_toBeNotifedObj.end())
 			{
 				m_toBeNotifedObj.erase(iter);
 			}
-
-			/*
-			for(typename vector<ZObserver<ParamType> *>::iterator iter = m_toBeNotifedObj.begin();
-				iter != m_toBeNotifedObj.end(); ++iter)
-			{
-				if(*iter == obj)
-				{
-					m_toBeNotifedObj.erase(iter);
-					break;
-				}
-			}
-			*/	
 			//m_removeLocker.unlock();
 			//unlock
 		}

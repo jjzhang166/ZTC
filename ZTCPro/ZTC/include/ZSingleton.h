@@ -42,6 +42,10 @@ namespace ZTC
 		};
 		static ObjectCreate create_object;
 	};
+
+template<typename T>
+typename ZSingleton<T>::ObjectCreate ZSingleton<T>:: cretate_object;
+
 }
 
 #endif //ZTC_ZSINGLETON_H

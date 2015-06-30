@@ -157,42 +157,37 @@ namespace ZTC
 	* øÏÀŸ≈≈–Ú
 	*/
 	template<typename T>
-	int Divide(T *arry, int leftIndex, int lastIndex, bool ascend = true)
+int partation(T *pArray, int left, int right, bool ascend = true)
+{
+	int refValue = pArray[right];
+	int i = left - 1;
+	for(int j = left; j < right; ++j)
 	{
-		int begin = leftIndex;
-		int end = lastIndex;
-		int key = arry[begin];
-		while(begin != end)
+		if((pArray[j] <= refValue && ascend) || (pArray[j] >= refValue && !ascend))
 		{
-			if((ascend && arry[end] >= key)
-				||(!ascend && arry[end] <= key ))
-			{
-				--end;
-			}
-			else if((ascend && arry[begin]<key)
-				|| (!ascend && arry[begin]>key))
-			{
-				++begin;
-			}
-			else
-			{
-				int tem = arry[begin];
-				arry[begin] = arry[end];
-				arry[end] = tem;
-			}
-		}
-		//PutOut(arry, lastIndex - leftIndex + 1);
-		return begin;
-	}
-	template<typename T>
-	void QuickSort(T *arry, int leftIndex, int rightIndex, bool ascend = true)
-	{
-		if(leftIndex >= rightIndex)
-			return;
+			i = i + 1;
 
-		int index = Divide(arry, leftIndex, rightIndex, ascend);
-		QuickSort(arry, 0, index - 1, ascend);
-		QuickSort(arry, index + 1, rightIndex, ascend);
+			int tmp = pArray[j];
+			pArray[j] = pArray[i];
+			pArray[i] = tmp;
+		}
 	}
+
+	int tmp = pArray[i + 1];
+	pArray[i + 1] = pArray[right];
+	pArray[right] = tmp;
+	return i + 1;
+}
+
+template<typename T>
+void quickSort(T *arry, int leftIndex, int rightIndex, bool ascend = true)
+{
+	if(leftIndex >= rightIndex)
+		return;
+
+	int index = partation(arry, leftIndex, rightIndex, ascend);
+	quickSort(arry, 0, index - 1, ascend);
+	quickSort(arry, index + 1, rightIndex, ascend);
+}
 }
 #endif //ZTC_COMMON_HPP
