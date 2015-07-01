@@ -2,7 +2,7 @@
 #define ZTCTEST_INCLUDE_ZLOG_H
 
 #include "ZMacroDefine.h"
-#include "ZSingleton.h"
+#include "ZSingleton.hpp"
 #include "ZMutex.h"
 
 #include <iostream>

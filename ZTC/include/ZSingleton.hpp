@@ -2,6 +2,9 @@
 #define ZTC__Include__ZSingleton_hpp
 
 #include "ZUncopy.hpp"
+#include "ZMacroDefine.h"
+
+BEGIN_ZTC_NAMESPACE
 
 template <typename Type>
 class ZSingleton : public ZUncopy
@@ -28,5 +31,8 @@ private:
 
 template <typename Type>
 typename ZSingleton<Type>::InteriorCreator ZSingleton<Type>::m_interiorCreator;
+
+
+END_ZTC_NAMESPACE
 
 #endif //ZTC__Include__ZSingleton_hpp

@@ -111,12 +111,11 @@
     <ClInclude Include="ZTC\include\ZMacroDefine.h" />
     <ClInclude Include="ZTC\include\ZMultiPlatformConfig.h" />
     <ClInclude Include="ZTC\include\ZMutex.h" />
-    <ClInclude Include="ZTC\include\ZUncopy.h" />
+    <ClInclude Include="ZTC\include\ZSingleton.hpp" />
+    <ClInclude Include="ZTC\include\ZUncopy.hpp" />
     <ClInclude Include="ZTC\include\ZObjectCounter.hpp" />
     <ClInclude Include="ZTC\include\ZObserver.hpp" />
     <ClInclude Include="ZTC\include\ZPoint.h" />
-    <ClInclude Include="ZTC\include\ZSingle.hpp" />
-    <ClInclude Include="ZTC\include\ZSingleton.h" />
     <ClInclude Include="ZTC\include\ZSortTracer.hpp" />
     <ClInclude Include="ZTC\include\ZStdf.h" />
     <ClInclude Include="ZTC\include\ZTime.h" />

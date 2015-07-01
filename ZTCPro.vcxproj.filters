@@ -114,12 +114,6 @@
     <ClInclude Include="ZTC\include\ZPoint.h">
       <Filter>ZTC\include</Filter>
     </ClInclude>
-    <ClInclude Include="ZTC\include\ZSingle.hpp">
-      <Filter>ZTC\include</Filter>
-    </ClInclude>
-    <ClInclude Include="ZTC\include\ZSingleton.h">
-      <Filter>ZTC\include</Filter>
-    </ClInclude>
     <ClInclude Include="ZTC\include\ZSortTracer.hpp">
       <Filter>ZTC\include</Filter>
     </ClInclude>
@@ -195,7 +189,10 @@
     <ClInclude Include="ZTC\include\ZMutex.h">
       <Filter>ZTC\include</Filter>
     </ClInclude>
-    <ClInclude Include="ZTC\include\ZUncopy.h">
+    <ClInclude Include="ZTC\include\ZUncopy.hpp">
+      <Filter>ZTC\include</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\include\ZSingleton.hpp">
       <Filter>ZTC\include</Filter>
     </ClInclude>
   </ItemGroup>
