@@ -22,10 +22,34 @@ class ZTC_CLASS ZDoubleLinkList
 public:
 	ZDoubleLinkList(): m_pDoubleLinkList(NULL), m_size(0)
 	{
-
 	}
 
-	~ZDoubleLinkList(){}
+	ZDoubleLinkList(const ZDoubleLinkList<ObjType> &doubleLiknList): m_pDoubleLinkList(NULL), m_size(0)
+	{
+		clear();
+		insert(doubleLiknList);
+	}
+
+	ZDoubleLinkList<ObjType>& operator=(const ZDoubleLinkList<ObjType> &doubleLiknList)
+	{
+		clear();
+		insert(doubleLiknList);
+	}
+
+	~ZDoubleLinkList()
+	{
+		clear();
+	}
+	void insert(const ZDoubleLinkList<ObjType> &link)
+	{
+		ZDoubleLinkNode<ObjType> *pTmpNode = link.m_pDoubleLinkList;
+		while(pTmpNode)
+		{
+			insert(pTmpNode->m_value);
+			pTmpNode = pTmpNode->m_pNext;
+		}
+	}
+
 	void insert(const ObjType &obj)
 	{
 		ZDoubleLinkNode<ObjType> *pNode = new(std::nothrow)ZDoubleLinkNode<ObjType>();
@@ -122,6 +146,21 @@ public:
 	}
 
 private:
+
+	void clear()
+	{
+		if(m_pDoubleLinkList == NULL)
+			return;
+		ZDoubleLinkNode<ObjType> *pNode = NULL;
+		do 
+		{
+			pNode = m_pDoubleLinkList->m_pNext;
+			DELETE_PTR(m_pDoubleLinkList);
+			m_pDoubleLinkList = pNode;
+			--m_size;
+		} while (m_pDoubleLinkList->m_pNext != NULL);
+	}
+
 	ZDoubleLinkNode<ObjType> *m_pDoubleLinkList;
 	int m_size;
 };
