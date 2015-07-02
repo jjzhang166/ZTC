@@ -1,7 +1,7 @@
 #ifndef ZTC_ZList_HPP
 #define ZTC_ZList_HPP
 
-#include "ZMacroDefine.h"
+#include "../include/ZMacroDefine.h"
 
 BEGIN_ZTC_NAMESPACE
 

@@ -5,7 +5,7 @@
 #include "../ZTC/include/ZStdf.h"
 #include "../ZTC/include/ZCommonality.h"
 //#include "../ZTC/Container/ZDuo.hpp"
-#include "../ZTC/include/ZList.hpp"
+#include "../ZTC/Container/ZList.hpp"
 #include "../ZTC/Container/ZDoubleLinkList.hpp"
 
 using namespace std;

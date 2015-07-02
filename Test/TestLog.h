@@ -12,10 +12,9 @@ using namespace ZTC;
 
 void TestLog()
 {
-	string str = "E:\\ZTCPro\\Test\\";
-	ZLog::getInstance().init(string(str + "log_test.txt").c_str(), "error");
-	TRACE_ERR("可变参数！%d我是%s%c, %f呵呵", 4, "程序员", 'a', 3.14156);
+	string str = ".\\";
+	int i = ZLog::getInstance().init(string(str + "log_test.txt").c_str(), "error");
+	ZLOG_LOG(LOG_ERROR, "1111可变参数！%d我是%s%c, %f呵呵\r\n", 4, "程序员", 'a', 3.14156);
 }
-
 
 #endif //ZTC_TEST_TESTLOG_H

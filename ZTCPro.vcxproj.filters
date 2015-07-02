@@ -195,6 +195,12 @@
     <ClInclude Include="ZTC\include\ZSingleton.hpp">
       <Filter>ZTC\include</Filter>
     </ClInclude>
+    <ClInclude Include="ZTC\Container\ZDoubleLinkList.hpp">
+      <Filter>ZTC\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="ZTC\Container\ZList.hpp">
+      <Filter>ZTC\Container</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZTC\src\ZCommonality.cpp">

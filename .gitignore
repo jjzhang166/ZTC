@@ -1,5 +1,8 @@
 /Debug
 /Release
 /*.suo
-/ZTCPro
+/ZTCPro*
+/ZTCPro*.*
 /Test
+/*.*sdf
+/*_test.txt

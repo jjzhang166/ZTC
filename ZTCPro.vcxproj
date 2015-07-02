@@ -17,7 +17,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -94,7 +94,9 @@
     <ClInclude Include="ZTC\ClientNet\ZClientTimer.h" />
     <ClInclude Include="ZTC\ClientNet\ZConfig.h" />
     <ClInclude Include="ZTC\Container\ZContainerFunctionPool.hpp" />
+    <ClInclude Include="ZTC\Container\ZDoubleLinkList.hpp" />
     <ClInclude Include="ZTC\Container\ZDuoType.hpp" />
+    <ClInclude Include="ZTC\Container\ZList.hpp" />
     <ClInclude Include="ZTC\include\ZBase.h" />
     <ClInclude Include="ZTC\include\ZBaseMemberPair.hpp" />
     <ClInclude Include="ZTC\include\ZCommon.hpp" />

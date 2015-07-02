@@ -3,7 +3,7 @@
 #include <cstdio>
 
 BEGIN_ZTC_NAMESPACE
-ZLog::ZLog() : m_writeStdout(false), m_logLevel(LOG_NONE), m_fileName(NULL)
+ZLog::ZLog() : m_writeStdout(false), m_logLevel(LOG_OFF), m_fileName(NULL)
 {
 
 }
@@ -38,6 +38,8 @@ int ZLog::init(const char* fileName, const char* level, bool writeStdout)
 {
 	if(strcmp(level, "all") == 0)
 		return init(fileName, LOG_ALL, writeStdout);
+	else if(strcmp(level, "trace") == 0)
+		return init(level, LOG_TRACE);
 	else if(strcmp(level, "debug") == 0)
 		return init(fileName, LOG_DEBUG, writeStdout);
 	else if(strcmp(level, "info") == 0)
@@ -46,15 +48,17 @@ int ZLog::init(const char* fileName, const char* level, bool writeStdout)
 		return init(fileName, LOG_WARN, writeStdout);
 	else if(strcmp(level, "error"))
 		return init(fileName, LOG_ERROR, writeStdout);
-	else if(strcmp(level, "none"))
-		return init(fileName, LOG_NONE, writeStdout);
+	else if(strcmp(level, "fatal"))
+		return init(fileName, LOG_FATAL, writeStdout);
+	else if(strcmp(level, "off"))
+		return init(fileName, LOG_OFF, writeStdout);
 	else
 		return init(fileName, LOG_WARN, writeStdout);
 }
 
 bool ZLog::setLevel(LogLevel level)
 {
-	if(level < LOG_ALL || level > LOG_NONE)
+	if(level < LOG_OFF || level > LOG_ALL)
 		return false;
 	m_logLevel = level;
 	return true;
@@ -62,10 +66,12 @@ bool ZLog::setLevel(LogLevel level)
 
 void ZLog::setLevel(const char* level)
 {
-	LogLevel l = LOG_ALL;
+	LogLevel l = LOG_OFF;
 	bool flag = true;
 	if(strcmp(level, "all") == 0)
 		l = LOG_ALL;
+	else if(strcmp(level, "trace") == 0)
+		l = LOG_TRACE;
 	else if(strcmp(level, "debug") == 0)
 		l = LOG_DEBUG;
 	else if(strcmp(level, "info"))
@@ -74,8 +80,10 @@ void ZLog::setLevel(const char* level)
 		l = LOG_WARN;
 	else if(strcmp(level, "error"))
 		l = LOG_ERROR;
-	else if(strcmp(level, "none"))
-		l = LOG_NONE;
+	else if(strcmp(level, "fatal"))
+		l = LOG_FATAL;
+	else if(strcmp(level, "off"))
+		l = LOG_OFF;
 	else
 		flag = false;
 	if(flag)
@@ -84,42 +92,16 @@ void ZLog::setLevel(const char* level)
 	}
 }
 
-void ZLog::debug(const char* format, ...)
+void ZLog::logInformation(const char *format, ...)
 {
 	va_list arg;
 	va_start(arg, format);
-	log(LOG_DEBUG, format, arg);
+	log(format, arg);
 	va_end(arg);
 }
 
-void ZLog::info(const char* format, ...)
+void ZLog::log(const char* format, va_list& arg)
 {
-	va_list arg;
-	va_start(arg, format);
-	log(LOG_INFO, format, arg);
-	va_end(arg);
-}
-
-void ZLog::warn(const char* format, ...)
-{
-	va_list arg;
-	va_start(arg, format);
-	log(LOG_WARN, format, arg);
-	va_end(arg);
-}
-
-void ZLog::error(const char* format, ...)
-{
-	va_list arg;
-	va_start(arg, format);
-	log(LOG_ERROR, format, arg);
-	va_end(arg);
-}
-
-void ZLog::log(LogLevel level, const char* format, va_list& arg)
-{
-	if(level < m_logLevel)
-		return;
 	static char buf[4096];
 #ifndef _MSC_VER
 	va_list temp;

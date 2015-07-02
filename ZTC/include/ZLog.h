@@ -17,20 +17,21 @@ using std::ifstream;
 using std::ofstream;
 using std::string;
 
+enum LogLevel
+{
+	LOG_OFF,
+	LOG_FATAL,
+	LOG_ERROR,
+	LOG_WARN,
+	LOG_INFO,
+	LOG_DEBUG,
+	LOG_TRACE,
+	LOG_ALL
+};
+
 class ZTC_CLASS ZLog : public ZSingleton<ZLog>
 {
 public:
-
-	enum LogLevel
-	{
-		LOG_ALL,
-		LOG_DEBUG,
-		LOG_INFO,
-		LOG_WARN,
-		LOG_ERROR,
-		LOG_NONE,
-	};
-
 	ZLog();
 	~ZLog();
 	
@@ -40,15 +41,12 @@ public:
 	bool setLevel(LogLevel level);
 	void setLevel(const char* level);
 
-	void debug(const char* format, ...);
-	void info(const char* format, ...);
-	void warn(const char* format, ...);
-	void error(const char* format, ...);
-
+	void logInformation(const char *format, ...);
 	static const char* getFileName(const char* fullName);
 
 private:
-	void log(LogLevel level, const char* format, va_list& arg);
+	
+	void log(const char* format, va_list& arg);
 
 	const char* m_fileName;
 	ofstream m_ofstream;
@@ -65,35 +63,32 @@ public:
 #define __FILENAME__ __FILE__
 #endif
 
-#define TRACE_DEBUG(format, ...)\
+#define ZLOG_LOG(level, format, ...) \
 {\
 	ZLog::getInstance().m_mutex.lock();\
-	ZLog::getInstance().debug("[%s] (%s:%d)", "DEBUG", __FILENAME__, __LINE__);\
-	ZLog::getInstance().debug(format, ##__VA_ARGS__);\
-	ZLog::getInstance().m_mutex.unlock();\
-}
-
-#define TRACE_INFO(format, ...)\
-{\
-	ZLog::getInstance().m_mutex.lock();\
-	ZLog::getInstance().info("[%s] (%s:%d)", "INFO", __FILENAME__, __LINE__);\
-	ZLog::getInstance().info(format, ##__VA_ARGS__);\
-	ZLog::getInstance().m_mutex.unlock();\
-}
-
-#define TRACE_WARN(format, ...)\
-{\
-	ZLog::getInstance().m_mutex.lock();\
-	ZLog::getInstance().warn("[%s] (%s:%d)", "WARN", __FILENAME__, __LINE__);\
-	ZLog::getInstance().warn(format, ##__VA_ARGS__);\
-	ZLog::getInstance().m_mutex.unlock();\
-}
-
-#define TRACE_ERR(format, ...)\
-{\
-	ZLog::getInstance().m_mutex.lock();\
-	ZLog::getInstance().error("[%s] (%s:%d)", "ERROR", __FILENAME__, __LINE__);\
-	ZLog::getInstance().error(format, ##__VA_ARGS__);\
+	char *pFormat = "[%s] (%s:%d)";\
+	switch(level) \
+	{\
+	case LOG_FATAL: \
+		ZLog::getInstance().logInformation(pFormat, "FATAL", __FILENAME__, __LINE__);\
+		break;\
+	case LOG_ERROR: \
+		ZLog::getInstance().logInformation(pFormat, "ERROR", __FILENAME__, __LINE__);\
+		break;\
+	case LOG_WARN: \
+		ZLog::getInstance().logInformation(pFormat, "FATAL", __FILENAME__, __LINE__);\
+		break;\
+	case LOG_INFO: \
+		ZLog::getInstance().logInformation(pFormat, "INFO", __FILENAME__, __LINE__);\
+		break;\
+	case LOG_DEBUG: \
+		ZLog::getInstance().logInformation(pFormat, "DEBUG", __FILENAME__, __LINE__);\
+		break;\
+	case LOG_TRACE: \
+		ZLog::getInstance().logInformation(pFormat, "TRACE", __FILENAME__, __LINE__);\
+		break;\
+	}\
+	ZLog::getInstance().logInformation(format, ##__VA_ARGS__);\
 	ZLog::getInstance().m_mutex.unlock();\
 }
 
