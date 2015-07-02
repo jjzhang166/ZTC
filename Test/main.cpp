@@ -237,7 +237,11 @@ int main(int argv, char*argc[])
 	//engageInLawsuit();
 	//engageInLawsuit1();
 
-	TestAlogrithm2();
+	//TestAlogrithm2();
+	
+	TestLog();
+	testDoubleLinkList();
+	testList();
 
 	return 0;
 }  

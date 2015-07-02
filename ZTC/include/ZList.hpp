@@ -1,15 +1,19 @@
 #ifndef ZTC_ZList_HPP
 #define ZTC_ZList_HPP
 
+#include "ZMacroDefine.h"
+
+BEGIN_ZTC_NAMESPACE
+
 template <typename ObjType>
-struct ZNode
+struct ZTC_CLASS ZNode
 {
 	ObjType m_value;
 	ZNode<ObjType> *m_pNext;
 };
 
 template <typename ObjType>
-class ZList 
+class ZTC_CLASS ZList 
 {
 public:
 	ZList() : m_pList(NULL), m_size(0)
@@ -66,22 +70,40 @@ public:
 		}
 	}
 
-	int search(const ObjType &obj)
+	bool search(const ObjType &obj, int &index)
 	{
+		bool isFind = false;
 		ZNode<ObjType> *pTmpNode = m_pList;
-		int index = 0;
+		int i = 0;
 		while(pTmpNode != NULL)
 		{
 			if(pTmpNode->m_value == obj)
+			{
+				isFind = true;
 				break;
+			}
 			pTmpNode = pTmpNode->m_pNext;
-			++index;
+			++i;
 		}
-		return index;
+		if(isFind)
+			index = i;
+		return isFind;
 	}
 
-	void deleteNode(int index, ObjType &obj)
+	void deleteObj(int index, ObjType &obj)
 	{
+		if(index >= m_size)
+			return;
+		if(index == 0)
+		{
+			ZNode<ObjType> *pTmpNode = m_pList;
+			obj = m_pList->m_value;
+			m_pList = m_pList->m_pNext;
+			DELETE_PTR(pTmpNode);
+			--m_size;
+			return;
+		}
+
 		ZNode<ObjType> *pTmpNode = m_pList;
 		ZNode<ObjType> *pPreNode = NULL;
 		while(index--)
@@ -92,14 +114,18 @@ public:
 
 		pPreNode->m_pNext = pTmpNode->m_pNext;
 		obj = pTmpNode->m_value;
-		delete pTmpNode;
-		pTmpNode = NULL;
+		DELETE_PTR(pTmpNode);
 		--m_size;
 	}
 
 	bool isEmpty()
 	{
 		return (m_size == 0 ? true : false);
+	}
+
+	int size()
+	{
+		return m_size;
 	}
 private:
 	void clear()
@@ -110,8 +136,7 @@ private:
 		do 
 		{
 			pNode = m_pList->m_pNext;
-			delete m_pList;
-			m_pList = NULL;
+			DELETE_PTR(m_pList);
 			m_pList = pNode;
 			--m_size;
 		} while (m_pList->m_pNext != NULL);
@@ -122,5 +147,5 @@ private:
 	
 };
 
-
+END_ZTC_NAMESPACE
 #endif //ZTC_ZList_HPP

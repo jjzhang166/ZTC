@@ -60,45 +60,41 @@ public:
 };
 
 #ifdef _MSC_VER
-#define __FILENAME__ Log::getFileName(__FILE__)
+#define __FILENAME__ ZLog::getFileName(__FILE__)
 #else
 #define __FILENAME__ __FILE__
 #endif
 
 #define TRACE_DEBUG(format, ...)\
 {\
-	ZLog* pLog = ZLog::getInstance();\
-	pLog->m_mutex.lock();\
-	pLog->debug("%s %s:%d  ", "DEBUG", __FILENAME__, __LINE__);\
-	pLog->debug(format, ##__VA_ARGS__);\
-	pLog->m_mutex.unlock();\
+	ZLog::getInstance().m_mutex.lock();\
+	ZLog::getInstance().debug("[%s] (%s:%d)", "DEBUG", __FILENAME__, __LINE__);\
+	ZLog::getInstance().debug(format, ##__VA_ARGS__);\
+	ZLog::getInstance().m_mutex.unlock();\
 }
 
 #define TRACE_INFO(format, ...)\
 {\
-	ZLog* pLog = ZLog::getInstance();\
-	pLog->m_mutex.lock();\
-	pLog->info("%s %s:%d  ", "INFO", __FILENAME__, __LINE__);\
-	pLog->info(format, ##__VA_ARGS__);\
-	pLog->m_mutex.unlock();\
+	ZLog::getInstance().m_mutex.lock();\
+	ZLog::getInstance().info("[%s] (%s:%d)", "INFO", __FILENAME__, __LINE__);\
+	ZLog::getInstance().info(format, ##__VA_ARGS__);\
+	ZLog::getInstance().m_mutex.unlock();\
 }
 
 #define TRACE_WARN(format, ...)\
 {\
-	ZLog* pLog = ZLog::getInstance();\
-	pLog->m_mutex.lock();\
-	pLog->warn("%s %s:%d  ", "WARN", __FILENAME__, __LINE__);\
-	pLog->warn(format, ##__VA_ARGS__);\
-	pLog->m_mutex.unlock();\
+	ZLog::getInstance().m_mutex.lock();\
+	ZLog::getInstance().warn("[%s] (%s:%d)", "WARN", __FILENAME__, __LINE__);\
+	ZLog::getInstance().warn(format, ##__VA_ARGS__);\
+	ZLog::getInstance().m_mutex.unlock();\
 }
 
 #define TRACE_ERR(format, ...)\
 {\
-	ZLog* pLog = ZLog::getInstance();\
-	pLog->m_mutex.lock();\
-	pLog->error("%s %s:%d  ", "ERR", __FILENAME__, __LINE__);\
-	pLog->error(format, ##__VA_ARGS__);\
-	pLog->m_mutex.unlock();\
+	ZLog::getInstance().m_mutex.lock();\
+	ZLog::getInstance().error("[%s] (%s:%d)", "ERROR", __FILENAME__, __LINE__);\
+	ZLog::getInstance().error(format, ##__VA_ARGS__);\
+	ZLog::getInstance().m_mutex.unlock();\
 }
 
 END_ZTC_NAMESPACE

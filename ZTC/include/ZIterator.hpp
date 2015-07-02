@@ -79,7 +79,7 @@ struct ZIteratorTraits <const T*>
 	typedef T value_type;
 	typedef ptrdiff_t difference_type;
 	typedef const T* pointer;
-	typedef cosnt T& reference;
+	typedef const T& reference;
 };
 
 template <class Iterator>

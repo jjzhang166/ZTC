@@ -18,38 +18,39 @@
 #ifndef ZTC_ZBASE_H
 #define ZTC_ZBASE_H
 
-namespace ZTC
+#include "../include/ZMacroDefine.h"
+
+BEGIN_ZTC_NAMESPACE
+#define DELETE_PTR(Ptr)    {if(Ptr){delete Ptr; Ptr = NULL;}}
+#define BREAK_IF(Pre) if(Pre)break
+#define RETURN_IF(Pre) if(Pre)return
+
+enum PointState
 {
-   #define DELETE_PTR(Ptr)    {if(Ptr){delete Ptr; Ptr = NULL;}}
-   #define ZTC_BREAK_IF(Pre) if(Pre)break
-   #define ZTC_RETURN_IF(Pre) if(Pre)return
+	NegativeX = 0,
+	NegativeY,
+	EqualPoint,
+	PositiveX,
+	PositiveY,
+	BottomRight,   //右下
+	TopRight,
+	TopLeft,
+	BottomLeft,
+	NoDefault,
+	XAxis, //同一X轴
+	YAxis, //同一Y轴
+	Overlap //重叠
+};
 
-	enum PointState
-	{
-		NegativeX = 0,
-		NegativeY,
-		EqualPoint,
-		PositiveX,
-		PositiveY,
-		BottomRight,   //右下
-		TopRight,
-		TopLeft,
-		BottomLeft,
-		NoDefault,
-		XAxis, //同一X轴
-		YAxis, //同一Y轴
-		Overlap //重叠
-	};
+enum Tirstate
+{
+	Negative = -1,
+	Zore = 0,
+	Positive = 1
+};
 
-	enum Tirstate
-	{
-		Negative = -1,
-		Zore = 0,
-		Positive = 1
-	};
-
-	enum {CHAR_COUNT = 255};
-}
+enum {CHAR_COUNT = 255};
+END_ZTC_NAMESPACE
 #endif //ZTC_ZBASE_H
 
 
