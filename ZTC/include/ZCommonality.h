@@ -43,8 +43,7 @@ ZTC_API int SplitBaseOnGropChar(string str, string split, vector<string > &vStr)
 	*
 	*****/
 ZTC_API int SplitBaseOnMultiGropChar(string str, vector<string > split, vector<string >&vStr);
-	bool IsSplit(string str, vector<string >&vStr, int num);
-
+	
 	/***************** 四舍五入
 	* 函数：double RoundOff(double num, int n = 2);
 	* 功能：四舍五入

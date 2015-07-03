@@ -50,6 +50,28 @@ BEGIN_ZTC_NAMESPACE
 		return vStr.size();
 	}
 
+	bool IsSplit(string str, vector<string >&vStr, int num)
+	{
+		if(0 == str.compare((*(vStr.end()-1)))) //	没有分割成子串
+		{
+			vStr.erase(vStr.end() -1); //删除末尾元素
+			return false;
+		}
+
+		//字符串被分割了，删除vStr中源字符串，将分割后的字符串插入源字符串的位置
+		vector<string >::iterator it = find(vStr.begin(), vStr.end(), str);
+		int n = 0;
+		if(it != vStr.end())
+		{   
+			n = vStr.size() - num;
+			vStr.insert(it, vStr.end() - n, vStr.end());
+			vStr.erase(vStr.end() - n, vStr.end());
+			vector<string >::iterator it01 = find(vStr.begin(), vStr.end(), str);
+			vStr.erase(it01);
+			return true;
+		}
+		return false;
+	}
 	int SplitBaseOnMultiGropChar(string str, vector<string > split, vector<string >&vStr)
 	{
 		if(split.size() <= 0)
@@ -74,28 +96,7 @@ BEGIN_ZTC_NAMESPACE
 		}
 		return vStr.size();
 	}
-	bool IsSplit(string str, vector<string >&vStr, int num)
-	{
-		if(0 == str.compare((*(vStr.end()-1)))) //	没有分割成子串
-		{
-			vStr.erase(vStr.end() -1); //删除末尾元素
-			return false;
-		}
-
-		//字符串被分割了，删除vStr中源字符串，将分割后的字符串插入源字符串的位置
-		vector<string >::iterator it = find(vStr.begin(), vStr.end(), str);
-		int n = 0;
-		if(it != vStr.end())
-		{   
-			n = vStr.size() - num;
-			vStr.insert(it, vStr.end() - n, vStr.end());
-			vStr.erase(vStr.end() - n, vStr.end());
-			vector<string >::iterator it01 = find(vStr.begin(), vStr.end(), str);
-			vStr.erase(it01);
-			return true;
-		}
-		return false;
-	}
+	
 
 	double RoundOf(double num, int n)
 	{

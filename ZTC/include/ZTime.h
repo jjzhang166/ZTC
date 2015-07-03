@@ -14,7 +14,7 @@ class ZDateTime
 {
 public:
 	ZDateTime();
-
+	
 	
 	
 	unsigned int msec;		///< ºÁÃë
@@ -32,7 +32,9 @@ private:
 	tm *m_tm;
 };
 
-void getSystemDateTime(ZDateTime& dateTime);
+ZTC_API void getSystemDateTime(ZDateTime& dateTime);
+ZTC_API unsigned long getTickCount();
+ZTC_API unsigned long getThreadTime();
 
 END_ZTC_NAMESPACE
 #endif //ZTC_INCLUDE_ZTIME_H
