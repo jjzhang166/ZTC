@@ -7,7 +7,7 @@
 BEGIN_ZTC_NAMESPACE
 
 template <typename Type>
-class ZSingleton : public ZUncopy
+class ZTC_CLASS ZSingleton : public ZUncopy
 {
 public:
 	static Type & getInstance()
