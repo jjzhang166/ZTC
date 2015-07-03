@@ -7,31 +7,27 @@
 BEGIN_ZTC_NAMESPACE;
 ZDateTime::ZDateTime()
 {
-	m_time = time(NULL);
-	m_tm = localtime(&m_time);
-	getDate();
-	getTime();
+	
+	
 }
 
-ZDate ZDateTime::getDate()
+
+
+void getSystemDateTime(ZDateTime& dateTime)
 {
-	m_date.year = m_tm->tm_year + 1900;
-	m_date.month = m_tm->tm_mon + 1;
-	m_date.day = m_tm->tm_mday;
-	m_date.weekDay = m_tm->tm_wday;
-	return m_date;
+	struct timeb tp;
+	ftime (&tp);
+	dateTime.msec = tp.millitm;
+	tm *pTm = localtime(&tp.time);
+	dateTime.second = pTm->tm_sec;
+	dateTime.minute = pTm->tm_min;
+	dateTime.hour = pTm->tm_hour;
+	dateTime.day = pTm->tm_mday;
+	dateTime.month = pTm->tm_mon + 1;
+	dateTime.year = pTm->tm_year + 1900;
+	dateTime.yDay = pTm->tm_yday;
+	dateTime.weekDay = pTm->tm_wday;
+	dateTime.isDst = pTm->tm_isdst;
 }
 
-ZTime ZDateTime::getTime()
-{
-	m_ztime.hour = m_tm->tm_hour;
-	m_ztime.minute = m_tm->tm_min;
-	m_ztime.second = m_tm->tm_sec;
-	return m_ztime;
-}
-
-string ZDateTime::format(const char* pCh) const
-{
-	return string();
-}
 END_ZTC_NAMESPACE;

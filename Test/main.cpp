@@ -3,6 +3,7 @@
 #include "math.h"  
 #include <iostream>  
 #include <string>
+#include <sys/timeb.h>
 
 #include "TestLog.h"
 
@@ -207,6 +208,19 @@ class Empty{typedef int Int;};
 class EmptyToo : public Empty{};
 //class EmptyThree : public EmptyToo, public Empty{};
 
+
+void testTime()
+{
+	struct        timeb        tp;
+	struct        tm        * tm;
+
+	ftime ( &tp );
+	tm = localtime (  & ( tp.time )  );
+
+	printf ( "%02d:%02d:%02d:%03d\n", ( tm -> tm_hour ) , ( tm -> tm_min  ) ,
+		( tm -> tm_sec  ),        ( tp.millitm ) );
+}
+
 int main(int argv, char*argc[])
 {    
 	//Test1();
@@ -242,6 +256,8 @@ int main(int argv, char*argc[])
 	TestLog();
 	testDoubleLinkList();
 	testList();
+
+	//testTime();
 
 	return 0;
 }  

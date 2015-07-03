@@ -67,12 +67,12 @@ public:
 #define ZLOG_LOG(level, format, ...) \
 {\
 	ZLog::getInstance().m_mutex.lock();\
-	ZDate date = ZDateTime().getDate();\
-	ZTime time = ZDateTime().getTime();\
-	ZLog::getInstance().logInformation(level, "[%04d-%02d-%02d %02d:%02d:%02d]",\
+	ZDateTime date;\
+	getSystemDateTime(date);\
+	ZLog::getInstance().logInformation(level, "[%04d-%02d-%02d %02d:%02d:%02d:%03d]",\
 			date.year, date.month, date.day, \
-			time.hour, time.minute, time.second);\
-	char *pFormat = "[%s] (%s:%d)";\
+			date.hour, date.minute, date.second, date.msec);\
+	char *pFormat = "[%s] %s:%d - ";\
 	switch(level) \
 	{\
 	case LOG_FATAL: \
