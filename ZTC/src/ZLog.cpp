@@ -44,13 +44,13 @@ int ZLog::init(const char* fileName, const char* level, bool writeStdout)
 		return init(fileName, LOG_DEBUG, writeStdout);
 	else if(strcmp(level, "info") == 0)
 		return init(fileName, LOG_INFO, writeStdout);
-	else if(strcmp(level, "warn"))
+	else if(strcmp(level, "warn") == 0)
 		return init(fileName, LOG_WARN, writeStdout);
-	else if(strcmp(level, "error"))
+	else if(strcmp(level, "error")== 0)
 		return init(fileName, LOG_ERROR, writeStdout);
-	else if(strcmp(level, "fatal"))
+	else if(strcmp(level, "fatal")== 0)
 		return init(fileName, LOG_FATAL, writeStdout);
-	else if(strcmp(level, "off"))
+	else if(strcmp(level, "off") == 0)
 		return init(fileName, LOG_OFF, writeStdout);
 	else
 		return init(fileName, LOG_WARN, writeStdout);
@@ -92,16 +92,18 @@ void ZLog::setLevel(const char* level)
 	}
 }
 
-void ZLog::logInformation(const char *format, ...)
+void ZLog::logInformation(LogLevel level, const char *format, ...)
 {
 	va_list arg;
 	va_start(arg, format);
-	log(format, arg);
+	log(level, format, arg);
 	va_end(arg);
 }
 
-void ZLog::log(const char* format, va_list& arg)
+void ZLog::log(LogLevel level, const char* format, va_list& arg)
 {
+	if(level > m_logLevel)
+		return;
 	static char buf[4096];
 #ifndef _MSC_VER
 	va_list temp;

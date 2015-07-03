@@ -40,13 +40,13 @@ public:
 
 	bool setLevel(LogLevel level);
 	void setLevel(const char* level);
-
-	void logInformation(const char *format, ...);
+	
+	void logInformation(LogLevel level, const char *format, ...);
 	static const char* getFileName(const char* fullName);
 
 private:
 	
-	void log(const char* format, va_list& arg);
+	void log(LogLevel level, const char* format, va_list& arg);
 
 	const char* m_fileName;
 	ofstream m_ofstream;
@@ -70,25 +70,25 @@ public:
 	switch(level) \
 	{\
 	case LOG_FATAL: \
-		ZLog::getInstance().logInformation(pFormat, "FATAL", __FILENAME__, __LINE__);\
+		ZLog::getInstance().logInformation(level, pFormat, "FATAL", __FILENAME__, __LINE__);\
 		break;\
 	case LOG_ERROR: \
-		ZLog::getInstance().logInformation(pFormat, "ERROR", __FILENAME__, __LINE__);\
+		ZLog::getInstance().logInformation(level, pFormat, "ERROR", __FILENAME__, __LINE__);\
 		break;\
 	case LOG_WARN: \
-		ZLog::getInstance().logInformation(pFormat, "FATAL", __FILENAME__, __LINE__);\
+		ZLog::getInstance().logInformation(level, pFormat, "WARN", __FILENAME__, __LINE__);\
 		break;\
 	case LOG_INFO: \
-		ZLog::getInstance().logInformation(pFormat, "INFO", __FILENAME__, __LINE__);\
+		ZLog::getInstance().logInformation(level, pFormat, "INFO", __FILENAME__, __LINE__);\
 		break;\
 	case LOG_DEBUG: \
-		ZLog::getInstance().logInformation(pFormat, "DEBUG", __FILENAME__, __LINE__);\
+		ZLog::getInstance().logInformation(level, pFormat, "DEBUG", __FILENAME__, __LINE__);\
 		break;\
 	case LOG_TRACE: \
-		ZLog::getInstance().logInformation(pFormat, "TRACE", __FILENAME__, __LINE__);\
+		ZLog::getInstance().logInformation(level, pFormat, "TRACE", __FILENAME__, __LINE__);\
 		break;\
 	}\
-	ZLog::getInstance().logInformation(format, ##__VA_ARGS__);\
+	ZLog::getInstance().logInformation(level, format, ##__VA_ARGS__);\
 	ZLog::getInstance().m_mutex.unlock();\
 }
 
