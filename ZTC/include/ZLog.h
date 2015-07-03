@@ -1,14 +1,15 @@
 #ifndef ZTCTEST_INCLUDE_ZLOG_H
 #define ZTCTEST_INCLUDE_ZLOG_H
 
-#include "ZMacroDefine.h"
-#include "ZSingleton.hpp"
-#include "ZMutex.h"
-
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
+
+#include "ZMacroDefine.h"
+#include "ZSingleton.hpp"
+#include "ZMutex.h"
+#include "ZTime.h"
 
 BEGIN_ZTC_NAMESPACE
 
@@ -66,6 +67,11 @@ public:
 #define ZLOG_LOG(level, format, ...) \
 {\
 	ZLog::getInstance().m_mutex.lock();\
+	ZDate date = ZDateTime().getDate();\
+	ZTime time = ZDateTime().getTime();\
+	ZLog::getInstance().logInformation(level, "[%04d-%02d-%02d %02d:%02d:%02d]",\
+			date.year, date.month, date.day, \
+			time.hour, time.minute, time.second);\
 	char *pFormat = "[%s] (%s:%d)";\
 	switch(level) \
 	{\

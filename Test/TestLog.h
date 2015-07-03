@@ -13,10 +13,13 @@ using namespace ZTC;
 void TestLog()
 {
 	string str = ".\\";
-	int i = ZLog::getInstance().init(string(str + "log_test.txt").c_str(), "error");
+	int i = ZLog::getInstance().init(string(str + "log_test.txt").c_str(), "all");
 	ZLOG_LOG(LOG_ERROR, "1111可变参数！%d我是%s%c, %f呵呵\r\n", 4, "程序员", 'a', 3.14156);
 	ZLOG_LOG(LOG_WARN, "1111可变参数！%d我是%s%c, %f呵呵\r\n", 4, "程序员", 'a', 3.14156);
 	ZLOG_LOG(LOG_FATAL, "1111可变参数！%d我是%s%c, %f呵呵\r\n", 4, "程序员", 'a', 3.14156);
+	ZLOG_LOG(LOG_INFO, "1111可变参数！%d我是%s%c, %f呵呵\r\n", 4, "程序员", 'a', 3.14156);
+	ZLOG_LOG(LOG_TRACE, "1111可变参数！%d我是%s%c, %f呵呵\r\n", 4, "程序员", 'a', 3.14156);
+	ZLOG_LOG(LOG_DEBUG, "1111可变参数！%d我是%s%c, %f呵呵\r\n", 4, "程序员", 'a', 3.14156);
 	//ZLOG_LOG(LOG_WARN, "1111可变参数！%d我是%s%c, %f呵呵\r\n", 4, "程序员", 'a', 3.14156);
 }
 

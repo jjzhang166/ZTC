@@ -3,42 +3,41 @@
 
 #include <time.h>
 #include <string>
+#include "ZMacroDefine.h"
 
+BEGIN_ZTC_NAMESPACE;
 using std::string;
 
-namespace ZTC
+struct ZDate
 {
-	struct ZDate
-	{
-		int year;
-		int month;
-		int day;
-		int weekDay;
-	};
+	int year;
+	int month;
+	int day;
+	int weekDay;
+};
 
-	struct ZTime
-	{
-		int hour;
-		int minute;
-		int seconds;
-	};
+struct ZTime
+{
+	int hour;
+	int minute;
+	int second;
+};
 
-	class ZDateTime
-	{
-	public:
-		ZDateTime();
+class ZDateTime
+{
+public:
+	ZDateTime();
 
-		ZDate GetDate();
-		ZTime GetTime();
-		string Format(const char* pCh, ...) const;
+	ZDate getDate();
+	ZTime getTime();
+	string format(const char* pCh) const;
 
-	private:
-		time_t m_time;
-		tm *m_tm;
-		ZDate m_date;
-		ZTime m_ztime;
+private:
+	time_t m_time;
+	tm *m_tm;
+	ZDate m_date;
+	ZTime m_ztime;
 
-	};
-}
-
+};
+END_ZTC_NAMESPACE
 #endif //ZTC_INCLUDE_ZTIME_H
