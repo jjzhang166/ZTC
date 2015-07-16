@@ -254,8 +254,9 @@ int main(int argv, char*argc[])
 	//TestAlogrithm2();
 	
 	TestLog();
-	testDoubleLinkList();
-	testList();
+	//testDoubleLinkList();
+	//testList();
+	
 
 	//testTime();
 
